@@ -1,0 +1,1 @@
+from video_metadata.serializers.video_metadata import VideoMetadataSerializer

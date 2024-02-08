@@ -1,0 +1,1 @@
+from video_metadata.admin.video_metadata import VideoMetadataAdmin

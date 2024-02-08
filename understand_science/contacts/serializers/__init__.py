@@ -1,0 +1,2 @@
+from contacts.serializers.manage_contact_us import ContactUsSerializer
+from contacts.serializers.manage_subscriber import SubscriberSerializer

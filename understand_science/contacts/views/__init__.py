@@ -1,0 +1,2 @@
+from contacts.views.manage_contact_us import ContactUsView
+from contacts.views.manage_subscriber import SubscriberView
