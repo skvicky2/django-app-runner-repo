@@ -33,9 +33,8 @@ ALLOWED_HOSTS = [
     "18.205.155.104",
     "localhost",
     "127.0.0.1",
-    "django-env.eba-eyp4qyrb.us-west-2.elasticbeanstalk.com",
     "http://uts-portal.s3-website-us-east-1.amazonaws.com/",
-    "https://*.awsapprunner.com"
+    "*.awsapprunner.com"
 ]
 # Application definition
 
