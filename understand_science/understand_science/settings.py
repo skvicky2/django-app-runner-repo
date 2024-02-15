@@ -11,13 +11,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-# from dotenv import load_dotenv
+#from dotenv import load_dotenv
 import os
-import json
-import dj_database_url
-from os import environ
 
-# load_dotenv()
+#load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,11 +30,11 @@ SECRET_KEY = "django-insecure-r@*&o^cy1nd@&y47ppi7fonorxbfgdmm&&818eb%%m2xqns@7!
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    "18.205.155.104",
     "localhost",
     "127.0.0.1",
     "django-env.eba-eyp4qyrb.us-west-2.elasticbeanstalk.com",
-    "http://uts-react-portal.s3-website-us-east-1.amazonaws.com/",
-    ".awsapprunner.com"
+    "http://uts-react-portal.s3-website-us-east-1.amazonaws.com/"
 ]
 
 
@@ -54,11 +51,11 @@ INSTALLED_APPS = [
     "uts.apps.UtsConfig",
     "contacts.apps.ContactsConfig",
     "video_metadata.apps.VideoMetadataConfig",
+    "site_admin_settings.apps.SiteAdminSettingsConfig",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -92,30 +89,23 @@ WSGI_APPLICATION = "understand_science.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.mysql",
-#         "NAME": "uts",
-#         "USER": "admin",
-#         "PASSWORD": "uts#1234",
-#         "HOST": "uts.cto0kwugu3a1.us-east-1.rds.amazonaws.com",
-#         "PORT": 3306,
-#     }
-# }
-
-if "DATABASE_SECRET" in environ:
-    database_secret = environ.get("DATABASE_SECRET")
-    db_url = json.loads(database_secret)["DATABASE_URL"]
-    DATABASES = {"default": dj_database_url.parse(db_url)}
-else:
-    DATABASES = {"default": dj_database_url.parse("sqlite:///db.sqlite3")}
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    "default": {
+        # "ENGINE": "django.db.backends.mysql",
+        'ENGINE': 'django.db.backends.postgresql',
+        # "NAME": os.environ["DB_NAME"],
+        # "USER": os.environ["DB_USER"],
+        # "PASSWORD": os.environ["DB_PASS"],
+        # "HOST": os.environ["DB_HOST"],
+        # "PORT": os.environ["DB_PORT"],
+        "NAME": "uts",
+        "USER": "postgres",
+        "PASSWORD":"uts#1234",
+        "HOST": "uts2.cto0kwugu3a1.us-east-1.rds.amazonaws.com",
+        "PORT": "5432"
+        
+    }
+}
 
 
 # Password validation
@@ -157,17 +147,6 @@ MEDIA_URL = "media/"
 # MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 MEDIA_ROOT = os.path.join(BASE_DIR, "media").replace("\\", "/")
 
-STATIC_ROOT = BASE_DIR / "staticfiles"
-
-STORAGES = {
-    "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
-    },
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -176,3 +155,15 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CORS_ORIGIN_ALLOW_ALL = True
 
+# Email Config
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Gmail SMTP server
+EMAIL_PORT = 587  # Port for Gmail SMTP
+EMAIL_USE_TLS = True  # Enable TLS for secure connection
+# EMAIL_HOST_USER = os.environ["EMAIL_HOST_USER"]  # Your Gmail address
+# EMAIL_HOST_PASSWORD = os.environ["EMAIL_HOST_PASSWORD"]  # Your Gmail password or application-specific password
+# DEFAULT_FROM_EMAIL = os.environ["DEFAULT_FROM_EMAIL"]  # Default sender email address
+
+EMAIL_HOST_USER='understandthesciencedev@gmail.com'  # Your Gmail address
+EMAIL_HOST_PASSWORD='cclbamddtjnpwqpg'  # Your Gmail password or application-specific password
+DEFAULT_FROM_EMAIL='understandthesciencedev@gmail.com'  # Default sender email address

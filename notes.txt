@@ -1,0 +1,36 @@
+Understand Science
+
+    $ mkdir Understand-Science
+    $ cd Understand-Science
+    $ python3 -m venv venv 
+    $ source venv/bin/activate
+    $ pip install django
+    $ django-admin startproject understand_science
+    Create .env at venv folder level
+    Change database config in settings.py
+    $ set -a; source .env; set +a;      
+    $ unset DJANGO_SETTINGS_MODULE
+    $ python understand_science/manage.py migrate
+    $ python understand_science/manage.py createsuperuser 
+        Username (leave blank to use 'vs950'): vigneshwaran
+        Email address: skvicky2@gmail.com
+        Password: password
+    $ python understand_science/manage.py runserver
+    Create new App
+    $ cd understand_science/
+    $ python manage.py startapp video_metadata
+
+
+REACT
+cd client
+npm install
+npm start
+
+DJANGO
+cd server
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+create .env file
+$: set -a; source .env; set +a
+python understand_science/manage.py runserver

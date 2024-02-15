@@ -5,8 +5,6 @@ from uts.models import Author, Tag, Category
 from django.urls import reverse
 from django.utils.html import format_html
 
-def get_abs_url(author_id):
-    return "uts/author/%i/change" % author_id
 
 class VideoMetadata(models.Model):
     """
@@ -22,9 +20,9 @@ class VideoMetadata(models.Model):
 
     description = models.TextField(blank=False, null=False)
 
-    category = models.ForeignKey(Category, to_field='title', on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     
-    author = models.ForeignKey(Author, to_field='name', on_delete=models.CASCADE)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
     
     tags = models.ManyToManyField(Tag)
 

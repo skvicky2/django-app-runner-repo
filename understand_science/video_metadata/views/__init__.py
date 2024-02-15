@@ -1,1 +1,3 @@
 from video_metadata.views.video_metadata import VideoMetadataView
+from video_metadata.views.share_video import ShareVideoView
+from video_metadata.views.category_video import CategoryVideoView

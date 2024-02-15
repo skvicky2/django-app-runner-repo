@@ -28,6 +28,7 @@ urlpatterns = [
     path("api/", include("video_metadata.urls")),
     path("api/", include("contacts.urls")),
     path("api/", include("contacts.urls")),
+    path("api/", include("site_admin_settings.urls")),
 ]
 
 

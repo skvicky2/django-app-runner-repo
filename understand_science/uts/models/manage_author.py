@@ -15,7 +15,7 @@ class Author(models.Model):
         unique=True,
     )
     
-    type = models.CharField(
+    title = models.CharField(
         max_length=255,
         blank=False,
         null=False,

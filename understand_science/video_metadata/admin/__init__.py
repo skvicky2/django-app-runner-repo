@@ -1,1 +1,2 @@
 from video_metadata.admin.video_metadata import VideoMetadataAdmin
+from video_metadata.admin.share_video import ShareVideo

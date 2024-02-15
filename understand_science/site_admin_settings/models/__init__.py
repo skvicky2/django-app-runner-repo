@@ -1,0 +1,1 @@
+from site_admin_settings.models.manage_menu import Menu
