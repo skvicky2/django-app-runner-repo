@@ -35,9 +35,8 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "django-env.eba-eyp4qyrb.us-west-2.elasticbeanstalk.com",
     "http://uts-portal.s3-website-us-east-1.amazonaws.com/",
-    ".awsapprunner.com"
+    "https://*.awsapprunner.com"
 ]
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -56,6 +55,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -142,10 +142,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+
 STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 MEDIA_URL = "media/"
-# MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 MEDIA_ROOT = os.path.join(BASE_DIR, "media").replace("\\", "/")
+
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 
 # Default primary key field type
