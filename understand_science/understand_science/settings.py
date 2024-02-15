@@ -31,13 +31,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "18.205.155.104",
-    "m3qpmwgpm6.us-east-1.awsapprunner.com",
     "localhost",
     "127.0.0.1",
     "django-env.eba-eyp4qyrb.us-west-2.elasticbeanstalk.com",
-    "http://uts-react-portal.s3-website-us-east-1.amazonaws.com/"
+    "http://uts-portal.s3-website-us-east-1.amazonaws.com/",
+    ".awsapprunner.com"
 ]
-
 
 # Application definition
 
