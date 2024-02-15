@@ -34,6 +34,7 @@ ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
     "http://uts-portal.s3-website-us-east-1.amazonaws.com/",
+    "https://m3qpmwgpm6.us-east-1.awsapprunner.com",
     ".awsapprunner.com"
 ]
 # Application definition
