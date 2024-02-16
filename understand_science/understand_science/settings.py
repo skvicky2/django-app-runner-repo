@@ -38,7 +38,6 @@ ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
     "http://uts-portal.s3-website-us-east-1.amazonaws.com/",
-    "https://m3qpmwgpm6.us-east-1.awsapprunner.com",
     ".awsapprunner.com"
 ]
 
@@ -95,28 +94,22 @@ WSGI_APPLICATION = "understand_science.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     "default": {
-#         # "ENGINE": "django.db.backends.mysql",
-#         'ENGINE': 'django.db.backends.postgresql',
-#         # "NAME": os.environ["DB_NAME"],
-#         # "USER": os.environ["DB_USER"],
-#         # "PASSWORD": os.environ["DB_PASS"],
-#         # "HOST": os.environ["DB_HOST"],
-#         # "PORT": os.environ["DB_PORT"],
-#         "NAME": "uts",
-#         "USER": "postgres",
-#         "PASSWORD":"uts#1234",
-#         "HOST": "uts2.cto0kwugu3a1.us-east-1.rds.amazonaws.com",
-#         "PORT": "5432"
-        
-#     }
-# }
-
 if "DATABASE_SECRET" in environ:
     database_secret = environ.get("DATABASE_SECRET")
     db_url = json.loads(database_secret)["DATABASE_URL"]
     DATABASES = {"default": dj_database_url.parse(db_url)}
+elif "DB_NAME" in environ:
+    DATABASES = {
+    "default": {
+        # "ENGINE": "django.db.backends.mysql",
+        'ENGINE': 'django.db.backends.postgresql',
+        "NAME": environ["DB_NAME"],
+        "USER": environ["DB_USER"],
+        "PASSWORD": environ["DB_PASS"],
+        "HOST": environ["DB_HOST"],
+        "PORT": environ["DB_PORT"],
+    }
+}
 else:
     DATABASES = {"default": dj_database_url.parse("sqlite:///db.sqlite3")}
 
