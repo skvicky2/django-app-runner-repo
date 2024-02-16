@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 #from dotenv import load_dotenv
 import os
+import json
+import dj_database_url
+
+from os import environ
 
 #load_dotenv()
 
@@ -91,24 +95,30 @@ WSGI_APPLICATION = "understand_science.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        # "ENGINE": "django.db.backends.mysql",
-        'ENGINE': 'django.db.backends.postgresql',
-        # "NAME": os.environ["DB_NAME"],
-        # "USER": os.environ["DB_USER"],
-        # "PASSWORD": os.environ["DB_PASS"],
-        # "HOST": os.environ["DB_HOST"],
-        # "PORT": os.environ["DB_PORT"],
-        "NAME": "uts",
-        "USER": "postgres",
-        "PASSWORD":"uts#1234",
-        "HOST": "uts2.cto0kwugu3a1.us-east-1.rds.amazonaws.com",
-        "PORT": "5432"
+# DATABASES = {
+#     "default": {
+#         # "ENGINE": "django.db.backends.mysql",
+#         'ENGINE': 'django.db.backends.postgresql',
+#         # "NAME": os.environ["DB_NAME"],
+#         # "USER": os.environ["DB_USER"],
+#         # "PASSWORD": os.environ["DB_PASS"],
+#         # "HOST": os.environ["DB_HOST"],
+#         # "PORT": os.environ["DB_PORT"],
+#         "NAME": "uts",
+#         "USER": "postgres",
+#         "PASSWORD":"uts#1234",
+#         "HOST": "uts2.cto0kwugu3a1.us-east-1.rds.amazonaws.com",
+#         "PORT": "5432"
         
-    }
-}
+#     }
+# }
 
+if "DATABASE_SECRET" in environ:
+    database_secret = environ.get("DATABASE_SECRET")
+    db_url = json.loads(database_secret)["DATABASE_URL"]
+    DATABASES = {"default": dj_database_url.parse(db_url)}
+else:
+    DATABASES = {"default": dj_database_url.parse("sqlite:///db.sqlite3")}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

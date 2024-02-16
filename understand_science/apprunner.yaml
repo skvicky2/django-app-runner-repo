@@ -9,6 +9,6 @@ run:
   command: sh startup.sh
   network:
     port: 8000
-  # secrets:
-  #   - name: DATABASE_SECRET
-  #     value-from: "arn:aws:secretsmanager:us-east-1:562861851125:secret:my-django-database-secret-y6SHfR"
+  secrets:
+    - name: DATABASE_SECRET
+      value-from: "arn:aws:secretsmanager:us-east-1:562861851125:secret:my-django-database-secret-y6SHfR"
