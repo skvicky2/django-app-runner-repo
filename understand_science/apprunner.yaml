@@ -11,4 +11,4 @@ run:
     port: 8000
   secrets:
     - name: DATABASE_SECRET
-      value-from: "arn:aws:secretsmanager:us-east-1:562861851125:secret:my-django-database-secret-y6SHfR"
+      value-from: "arn:aws:secretsmanager:us-east-1:119747254275:secret:app_runner-UtQiNH"
