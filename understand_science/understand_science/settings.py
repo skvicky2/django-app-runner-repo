@@ -37,6 +37,8 @@ ALLOWED_HOSTS = [
     "https://m3qpmwgpm6.us-east-1.awsapprunner.com",
     ".awsapprunner.com"
 ]
+
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 # Application definition
 
 INSTALLED_APPS = [
