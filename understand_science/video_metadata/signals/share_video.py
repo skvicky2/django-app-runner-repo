@@ -2,6 +2,8 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from video_metadata.models import ShareVideo, VideoMetadata
 from utils.email_config import trigger_email
+from django.conf import settings
+
 
 @receiver(post_save, sender=ShareVideo)
 def share_video_post_save(sender, instance, created, **kwargs):
@@ -15,7 +17,7 @@ def share_video_post_save(sender, instance, created, **kwargs):
         
         try:
             # Send the video url and video title in email 
-            subject="Video Understand The Science"
+            subject="Understand The Science"
             recipient_list=[instance.email]
             text_content=""
             html_content= """
@@ -33,14 +35,13 @@ def share_video_post_save(sender, instance, created, **kwargs):
  
             <p style="margin-top: 1em">Regards,</p>
             <p style="margin-top: 0.2em !important;">Understand The Science Dev Team</p>`,
-            """.format(video.title, video.video)
+            """.format(video.title, settings.HOST_URL + video.video.url)
 
-            trigger_email(subject, recipient_list, text_content, html_content)
+            trigger_email(subject, text_content, recipient_list, html_content)
+            
 
         except Exception as e:
             print('There was an error sending an email to {instance.email}: ', e) 
-        
-        
         
 
 

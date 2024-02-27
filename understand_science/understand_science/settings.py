@@ -173,13 +173,11 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 # Email Config
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'  # Gmail SMTP server
-EMAIL_PORT = 587  # Port for Gmail SMTP
-EMAIL_USE_TLS = True  # Enable TLS for secure connection
-# EMAIL_HOST_USER = os.environ["EMAIL_HOST_USER"]  # Your Gmail address
-# EMAIL_HOST_PASSWORD = os.environ["EMAIL_HOST_PASSWORD"]  # Your Gmail password or application-specific password
-# DEFAULT_FROM_EMAIL = os.environ["DEFAULT_FROM_EMAIL"]  # Default sender email address
+EMAIL_HOST = 'netsol-smtp-oxcs.hostingplatform.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = environ["EMAIL_HOST_USER"]
+EMAIL_HOST_PASSWORD = environ["EMAIL_HOST_PASSWORD"]
 
-EMAIL_HOST_USER='understandthesciencedev@gmail.com'  # Your Gmail address
-EMAIL_HOST_PASSWORD='cclbamddtjnpwqpg'  # Your Gmail password or application-specific password
-DEFAULT_FROM_EMAIL='understandthesciencedev@gmail.com'  # Default sender email address
+# Django host url config
+HOST_URL = environ["HOST_URL"]

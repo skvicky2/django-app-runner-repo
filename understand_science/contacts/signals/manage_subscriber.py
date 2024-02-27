@@ -31,7 +31,7 @@ def subscriber_post_save(sender, instance, created, **kwargs):
             <p style="margin-top: 0.2em !important;">Understand The Science Dev Team</p>`,
             """
 
-            trigger_email(subject, recipient_list, text_content, html_content)
+            trigger_email(subject, text_content, recipient_list, html_content)
 
         except Exception as e:
             print('There was an error sending an email to {instance.email}: ', e) 
