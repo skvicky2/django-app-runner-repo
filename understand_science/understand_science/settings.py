@@ -176,8 +176,15 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'netsol-smtp-oxcs.hostingplatform.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = environ["EMAIL_HOST_USER"]
-EMAIL_HOST_PASSWORD = environ["EMAIL_HOST_PASSWORD"]
 
-# Django host url config
-HOST_URL = environ["HOST_URL"]
+if "DATABASE_SECRET" in environ:
+    database_secret = environ.get("DATABASE_SECRET")
+    EMAIL_HOST_USER = json.loads(database_secret)["EMAIL_HOST_USER"]
+    EMAIL_HOST_PASSWORD = json.loads(database_secret)["EMAIL_HOST_PASSWORD"]
+    # Django host url config
+    HOST_URL = json.loads(database_secret)["HOST_URL"]
+else:
+    EMAIL_HOST_USER = environ["EMAIL_HOST_USER"]
+    EMAIL_HOST_PASSWORD = environ["EMAIL_HOST_PASSWORD"]
+    # Django host url config
+    HOST_URL = environ["HOST_URL"]
