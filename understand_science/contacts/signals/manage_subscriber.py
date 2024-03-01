@@ -10,7 +10,7 @@ def subscriber_post_save(sender, instance, created, **kwargs):
     """
     if created:
         try:
-            # Send the video url and video title in email 
+            # Send acknowledge mail to the subscriber
             subject="Video Understand The Science"
             recipient_list=[instance.email]
             text_content=""
