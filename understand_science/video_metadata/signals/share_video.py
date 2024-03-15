@@ -21,10 +21,10 @@ def share_video_post_save(sender, instance, created, **kwargs):
             recipient_list=[instance.email]
             text_content=""
             html_content= """
-            <p>Hello,</p>
+            <p>Hello, {}</p>
  
             <p style="margin-top: 1em">
-                Shared Video Title - <b>{}</b> and Shared Video URL - <b>{}</b>
+                {} has shared a video with Title - <b>{}</b> and Shared Video URL - <b>{}</b> from the mail id - {} .
             </p>
             
             <p style="margin-top: 1em">
@@ -35,7 +35,7 @@ def share_video_post_save(sender, instance, created, **kwargs):
  
             <p style="margin-top: 1em">Regards,</p>
             <p style="margin-top: 0.2em !important;">Understand The Science Dev Team</p>`,
-            """.format(video.title, settings.HOST_URL + video.video.url)
+            """.format(instance.to_name, instance.from_name, video.title, settings.HOST_URL + video.video.url, instance.from_email)
 
             trigger_email(subject, text_content, recipient_list, html_content)
             

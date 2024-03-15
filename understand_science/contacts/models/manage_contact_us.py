@@ -30,5 +30,5 @@ class ContactUs(models.Model):
         return str(self.first_name)
 
     class Meta:
-        verbose_name_plural = "Manage Contact Us"
+        verbose_name_plural = "Contact Us"
         verbose_name = "Contact Us"

@@ -56,8 +56,8 @@ class VideoMetadata(models.Model):
         return format_html(rel_list)
     
     class Meta:
-        verbose_name_plural = "Manage Video Metadata"
-        verbose_name = "Video Metadata"
+        verbose_name_plural = "Videos"
+        verbose_name = "Video"
 
 
    

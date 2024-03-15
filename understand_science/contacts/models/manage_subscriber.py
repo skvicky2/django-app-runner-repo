@@ -16,5 +16,5 @@ class Subscriber(models.Model):
         return str(self.email)
 
     class Meta:
-        verbose_name_plural = "Manage Subscriber"
+        verbose_name_plural = "Manage Subscribers"
         verbose_name = "Subscriber"
