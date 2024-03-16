@@ -168,20 +168,24 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 
 if "DATABASE_SECRET" in environ:
-    database_secret = environ.get("DATABASE_SECRET")
-    EMAIL_HOST_USER = json.loads(database_secret)["EMAIL_HOST_USER"]
-    EMAIL_HOST_PASSWORD = json.loads(database_secret)["EMAIL_HOST_PASSWORD"]
+    secret_manager = json.loads(environ.get("DATABASE_SECRET"))
+    EMAIL_HOST_USER = secret_manager["EMAIL_HOST_USER"]
+    EMAIL_HOST_PASSWORD = secret_manager["EMAIL_HOST_PASSWORD"]
     # Django host url config
-    HOST_URL = json.loads(database_secret)["HOST_URL"]
+    HOST_URL = secret_manager["HOST_URL"]
+    AWS_ACCESS_KEY_ID = secret_manager["AWS_ACCESS_KEY_ID"]
+    AWS_SECRET_ACCESS_KEY = secret_manager["AWS_SECRET_ACCESS_KEY"]
 else:
     EMAIL_HOST_USER = environ["EMAIL_HOST_USER"]
     EMAIL_HOST_PASSWORD = environ["EMAIL_HOST_PASSWORD"]
     # Django host url config
     HOST_URL = environ["HOST_URL"]
     
+    AWS_ACCESS_KEY_ID = environ["AWS_ACCESS_KEY_ID"]
+    AWS_SECRET_ACCESS_KEY = environ["AWS_SECRET_ACCESS_KEY"]
+    
 
-AWS_ACCESS_KEY_ID = environ["AWS_ACCESS_KEY_ID"]
-AWS_SECRET_ACCESS_KEY = environ["AWS_SECRET_ACCESS_KEY"]
+
 AWS_STORAGE_BUCKET_NAME = 'uts-static-data'
 AWS_S3_SIGNATURE_NAME = 's3v4',
 AWS_S3_REGION_NAME = 'us-east-1'
