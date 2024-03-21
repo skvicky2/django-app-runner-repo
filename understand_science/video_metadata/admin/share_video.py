@@ -3,11 +3,13 @@ from django.contrib import admin
 from django.urls import reverse
 from django.utils.html import format_html
 
-    
 @admin.register(ShareVideo)
 class ShareVideoAdmin(admin.ModelAdmin):
     list_display = (
         "email",
+        "to_name",
+        "from_email",
+        "from_name",
         "video_title",
         "created_date",
         "updated_date",
