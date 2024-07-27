@@ -2,7 +2,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from video_metadata.models import ShareVideo, VideoMetadata
 from utils.email_config import trigger_email
-from django.conf import settings
 
 
 @receiver(post_save, sender=ShareVideo)
@@ -35,7 +34,7 @@ def share_video_post_save(sender, instance, created, **kwargs):
  
             <p style="margin-top: 1em">Regards,</p>
             <p style="margin-top: 0.2em !important;">Understand The Science Dev Team</p>`,
-            """.format(instance.to_name, instance.from_name, video.title, settings.HOST_URL + video.video.url, instance.from_email)
+            """.format(instance.to_name, instance.from_name, video.title, video.video.url, instance.from_email)
 
             trigger_email(subject, text_content, recipient_list, html_content)
             
