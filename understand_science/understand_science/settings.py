@@ -38,7 +38,8 @@ ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
     "http://uts-portal.s3-website-us-east-1.amazonaws.com/",
-    ".awsapprunner.com"
+    ".awsapprunner.com",
+    "uts-admin.com"
 ]
 
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
