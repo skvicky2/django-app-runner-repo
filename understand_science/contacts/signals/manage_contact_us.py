@@ -6,24 +6,24 @@ from django.conf import settings
 
 def trigger_mail_customer(email):
     # Send acknowledge mail to the customer 
-    subject="Video Understand The Science"
+    subject="Understand The Science"
     recipient_list= [email]
     text_content=""
     html_content= """
     <p>Hello,</p>
 
     <p style="margin-top: 1em">
-        Thanks for contacting us. Our team will get back to you soon.
+        Thank you for contacting us! Our team will get back to you soon.
     </p>
     
     <p style="margin-top: 1em">
-        Our mission is to provide easy-to-understand medical education on crucial healthcare topics to empower informed health decisions.
+        The mission of Understand the Science is to provide easy-to-understand medical education on crucial healthcare topics to empower informed health decisions.
     </p>
     
     <p style="margin-top: 1em"><em>Stay tuned for more updates from us!</em></p>
 
     <p style="margin-top: 1em">Regards,</p>
-    <p style="margin-top: 0.2em !important;">Understand The Science Dev Team</p>`,
+    <p style="margin-top: 0.2em !important;">Understand the Science</p>
     """
 
     trigger_email(subject, text_content, recipient_list, html_content)
