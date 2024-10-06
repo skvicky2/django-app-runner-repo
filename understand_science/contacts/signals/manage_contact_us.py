@@ -65,7 +65,7 @@ def trigger_mail_dev_team(customer):
     </p>
     
     <p style="margin-top: 1em">Regards,</p>
-    <p style="margin-top: 0.2em !important;">Understand The Science Dev Team</p>`,
+    <p style="margin-top: 0.2em !important;">Understand The Science</p>
     """
 
     trigger_email(subject, text_content, recipient_list, html_content)

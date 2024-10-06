@@ -33,7 +33,7 @@ def share_video_post_save(sender, instance, created, **kwargs):
             <p style="margin-top: 1em"><em>Stay tuned for more updates from us!</em></p>
  
             <p style="margin-top: 1em">Regards,</p>
-            <p style="margin-top: 0.2em !important;">Understand The Science Dev Team</p>`,
+            <p style="margin-top: 0.2em !important;">Understand The Science</p>
             """.format(instance.to_name, instance.from_name, video.title, video.video.url, instance.from_email)
 
             trigger_email(subject, text_content, recipient_list, html_content)

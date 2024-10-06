@@ -18,7 +18,7 @@ def subscriber_post_save(sender, instance, created, **kwargs):
             <p>Hello,</p>
  
             <p style="margin-top: 1em">
-               Thank you for subscribing us! Our team will get back to you soon.
+               Thank you for subscribing for updates!
             </p>
             
             <p style="margin-top: 1em">
